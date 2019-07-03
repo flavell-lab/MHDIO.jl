@@ -33,6 +33,9 @@ function read_img(file_path, img_type, img_dim)
     end
 end
 
+"""
+function read_img(mhd::MHD)
+"""
 function read_img(mhd::MHD)
     read_img(mhd.path_raw, mhd.img_type, mhd.img_shape)
 end
@@ -43,6 +46,10 @@ function write_raw(file_path, array::Array)
     end
 end
 
+"""
+	generate_MHD_spec(spacing_lat, spacing_axi, size_x, size_y, size_z, filename_raw)
+
+"""
 function generate_MHD_spec(spacing_lat, spacing_axi, size_x, size_y, size_z, filename_raw)
 "ObjectType = Image
 NDims = 3
@@ -54,7 +61,7 @@ Offset = 0 0 0
 CenterOfRotation = 0 0 0
 AnatomicalOrientation = RAI
 ElementSpacing = $(spacing_lat) $(spacing_lat) $(spacing_axi)
-DimSize = $(size_x) $(size_y) $(size_z)
+DimSize = $(size_z) $(size_y) $(size_x)
 ElementType = MET_USHORT
 ElementDataFile = $(filename_raw)"
 end
