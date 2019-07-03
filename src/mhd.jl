@@ -61,7 +61,7 @@ Offset = 0 0 0
 CenterOfRotation = 0 0 0
 AnatomicalOrientation = RAI
 ElementSpacing = $(spacing_lat) $(spacing_lat) $(spacing_axi)
-DimSize = $(size_z) $(size_y) $(size_x)
+DimSize = $(size_x) $(size_y) $(size_z)
 ElementType = MET_USHORT
 ElementDataFile = $(filename_raw)"
 end
