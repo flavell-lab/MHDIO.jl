@@ -34,12 +34,19 @@ function read_img(file_path, img_type, img_dim)
 end
 
 """
-function read_img(mhd::MHD)
+    read_img(mhd::MHD)
+
+Read .mhd file into array
 """
 function read_img(mhd::MHD)
     read_img(mhd.path_raw, mhd.img_type, mhd.img_shape)
 end
 
+"""
+	write_raw(file_path, array::Array)
+
+Write .raw file for MHD
+"""
 function write_raw(file_path, array::Array)
     open(file_path, "w") do f
         write(f, array)
@@ -47,10 +54,23 @@ function write_raw(file_path, array::Array)
 end
 
 """
-	generate_MHD_spec(spacing_lat, spacing_axi, size_x, size_y, size_z, filename_raw)
+	generate_MHD_spec(spacing_lat, spacing_axi, size_x, size_y, size_z,
+        filename_raw)
 
+Generate specification/metadata text for MHD
+
+
+Arguments
+---------
+* `spacing_lat`: lateral spacing
+* `spacing_axi`: axial spacing
+* `size_x`: x dimension
+* `size_y`: y dimension
+* `size_z`: z dimension
+* `filename_raw`: .raw file name
 """
-function generate_MHD_spec(spacing_lat, spacing_axi, size_x, size_y, size_z, filename_raw)
+function generate_MHD_spec(spacing_lat, spacing_axi, size_x, size_y, size_z,
+    filename_raw)
 "ObjectType = Image
 NDims = 3
 BinaryData = True
@@ -66,8 +86,10 @@ ElementType = MET_USHORT
 ElementDataFile = $(filename_raw)"
 end
 
-function write_MHD_spec(path, spacing_lat, spacing_axi, size_x, size_y, size_z, filename_raw)
-    MHD_str = generate_MHD_spec(spacing_lat, spacing_axi, size_x, size_y, size_z, filename_raw)
+function write_MHD_spec(path, spacing_lat, spacing_axi, size_x, size_y, size_z,
+    filename_raw)
+    MHD_str = generate_MHD_spec(spacing_lat, spacing_axi, size_x, size_y,
+        size_z, filename_raw)
     open(path, "w") do f
         write(f, MHD_str)
     end
